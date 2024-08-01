@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.5.54">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Getting Started with LatinCy - 4&nbsp; Word Tokenization</title>
+<title>4&nbsp; Word Tokenization – Getting Started with LatinCy</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -33,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -64,7 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./projects.html" rel="next">
+<link href="./lemmatization.html" rel="next">
 <link href="./sentence-segmentation.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -81,7 +81,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -90,6 +96,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -105,13 +112,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./sentence-segmentation.html">NLP Tasks</a></li><li class="breadcrumb-item"><a href="./word-tokenization.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Word Tokenization</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./sentence-segmentation.html">NLP Tasks</a></li><li class="breadcrumb-item"><a href="./word-tokenization.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Word Tokenization</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -120,7 +127,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Getting Started with LatinCy</a> 
@@ -146,14 +153,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Front Matter</span></span>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
  <span class="menu-text">Model/Pipeline Basics</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./2_install.html" class="sidebar-item-text sidebar-link">
@@ -170,13 +181,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
  <span class="menu-text">NLP Tasks</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./sentence-segmentation.html" class="sidebar-item-text sidebar-link">
@@ -189,17 +200,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Word Tokenization</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lemmatization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Lemmatization</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./pos-tagging.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">POS Tagging</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">spaCy Tasks</span></span>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
  <span class="menu-text">Appendices</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./projects.html" class="sidebar-item-text sidebar-link">
@@ -217,7 +244,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -236,7 +263,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./sentence-segmentation.html">NLP Tasks</a></li><li class="breadcrumb-item"><a href="./word-tokenization.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Word Tokenization</span></a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Word Tokenization</span></h1>
 </div>
@@ -251,11 +278,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
+
 </header>
+
 
 <section id="word-tokenization-with-latincy" class="level2" data-number="4.1">
 <h2 data-number="4.1" class="anchored" data-anchor-id="word-tokenization-with-latincy"><span class="header-section-number">4.1</span> Word tokenization with LatinCy</h2>
-<div class="cell" data-execution_count="1">
+<div id="cell-2" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Imports &amp; setup</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> spacy</span>
@@ -270,14 +299,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Word tokenization is the task of splitting a text into words (and wordlike units like punctuation, numbers, etc.). For the LatinCy models, tokenization is the fundamental pipeline component on which all other components depend. SpaCy uses non-destructive, “canonical” tokenization, i.e.&nbsp;non-destructive, in that the original text can be untokenized, so to speak, based on <code>Token</code> annotations and canonical in that indices are assigned to each token during this process and these indices are used to refer to the tokens in other annotations. (Tokens <em>can</em> be separated or merged, but this requires the user to actively undo and redefine the tokenization output.) LatinCy uses a modified version of the default spaCy tokenizer that recognizes a splits enlitic <em>-que</em> using a rules-based process. (NB: It is in the LatinCy <a href="./projects.html#enclitics-project">development plan</a> to move enclitic splitting to a separate post-tokenization component.)</p>
 <p>The spaCy <code>Doc</code> object is an iterable and tokens are the iteration unit.</p>
-<div class="cell" data-execution_count="2">
+<div id="cell-4" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>tokens <span class="op">=</span> [item <span class="cf">for</span> item <span class="kw">in</span> doc]</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tokens)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[Haec, narrantur, a, poetis, de, Perseo, ., Perseus, filius, erat, Iovis, ,, maximi, deorum, ., Avus, eius, Acrisius, appellabatur, .]</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="3">
+<div id="cell-5" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>token <span class="op">=</span> tokens[<span class="dv">0</span>]</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(token))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -285,7 +314,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>The text content of a <code>Token</code> object can be retrieved with the <code>text</code> attribute.</p>
-<div class="cell" data-execution_count="4">
+<div id="cell-7" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, token <span class="kw">in</span> <span class="bu">enumerate</span>(tokens, <span class="dv">1</span>):</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>token<span class="sc">.</span>text<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -312,7 +341,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Note again that the token itself is a spaCy <code>Token</code> object and that the <code>text</code> attribute returns a Python string even though their representations in the Jupyter Notebook look the same.</p>
-<div class="cell" data-execution_count="5">
+<div id="cell-9" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>token <span class="op">=</span> tokens[<span class="dv">0</span>]</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'</span><span class="sc">{</span><span class="bu">type</span>(token)<span class="sc">}</span><span class="ss"> -&gt; </span><span class="sc">{</span>token<span class="sc">}</span><span class="ss">'</span>)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'</span><span class="sc">{</span><span class="bu">type</span>(token.text)<span class="sc">}</span><span class="ss"> -&gt; </span><span class="sc">{</span>token<span class="sc">.</span>text<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -325,13 +354,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 data-number="4.1.1" class="anchored" data-anchor-id="token-attributes-and-methods-related-to-tokenization"><span class="header-section-number">4.1.1</span> Token attributes and methods related to tokenization</h3>
 <p>Here are some atrributes/methods available for spaCy <code>Token</code> objects that are relevant to word tokenization.</p>
 <p>SpaCy keeps track of both the token indices and the character offsets within a doc using either the <code>i</code> or <code>idx</code> attributes, respectively…</p>
-<div class="cell" data-execution_count="6">
+<div id="cell-13" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(token.doc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Haec narrantur a poetis de Perseo. Perseus filius erat Iovis, maximi deorum. Avus eius Acrisius appellabatur.</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="7">
+<div id="cell-14" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># token indices</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> token <span class="kw">in</span> doc:</span>
@@ -360,7 +389,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>This is functionally equivalent to using <code>enumerate</code>…</p>
-<div class="cell" data-execution_count="8">
+<div id="cell-16" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># token indices, with enumerate</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, token <span class="kw">in</span> <span class="bu">enumerate</span>(doc):</span>
@@ -389,7 +418,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Another indexing option is the <code>idx</code> attribute which is the character offset of the token in the original <code>Doc</code> object.</p>
-<div class="cell" data-execution_count="9">
+<div id="cell-18" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># character offsets, </span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> token <span class="kw">in</span> doc:</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'</span><span class="sc">{</span>token<span class="sc">.</span>idx<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>token<span class="sc">.</span>text<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -417,13 +446,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Observe these <code>idx</code> attributes relate to the character offsets from the original <code>Doc</code>. To illustrate the point, we will replace spaces with an underscore in the output. We can see from the output above that <em>narrantur</em> begins at <code>idx</code> 5 and that the next word <em>a</em> begins at <code>idx</code> 15. Yet <em>narrantur</em> is only 9 characters long and the difference between these two numbers is 10! This is because we need to account for whitespace in the original <code>Doc</code>. This is handled by the attribute <code>text_with_ws</code>.</p>
-<div class="cell" data-execution_count="10">
+<div id="cell-20" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(doc.text[<span class="dv">5</span>:<span class="dv">15</span>].replace(<span class="st">' '</span>, <span class="st">'_'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>narrantur_</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="11">
+<div id="cell-21" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'text -&gt; </span><span class="sc">{</span>doc[<span class="dv">1</span>]<span class="sc">.</span>text<span class="sc">}</span><span class="ss"> (length </span><span class="sc">{</span><span class="bu">len</span>(doc[<span class="dv">1</span>].text)<span class="sc">}</span><span class="ss">)'</span>)</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
@@ -435,7 +464,7 @@ text_with_ws -&gt; narrantur  (length 10)</code></pre>
 </div>
 </div>
 <p>Accordingly, using the <code>text_with_ws</code> attribute (as opposed to simply the <code>text</code> attribute) we can reconstruct the original text. This is what was meant above by “non-destructive” tokenization. Look at the difference between a text joined using the <code>text</code> attribute and one joined using the <code>text_with_ws</code> attribute.</p>
-<div class="cell" data-execution_count="12">
+<div id="cell-23" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>joined_tokens <span class="op">=</span> <span class="st">' '</span>.join([token.text <span class="cf">for</span> token <span class="kw">in</span> doc])</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(joined_tokens)</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(joined_tokens <span class="op">==</span> doc.text)</span>
@@ -454,7 +483,7 @@ True</code></pre>
 </div>
 </div>
 <p>Because spaCy tokenization is set from the outset, you can traverse the tokens in a <code>Doc</code> objects from the tokens themselves using the <code>nbor</code> method. This method takes an integer argument that specifies the number of tokens to traverse. A positive integer traverses the tokens to the right, a negative integer traverses the tokens to the left.</p>
-<div class="cell" data-execution_count="13">
+<div id="cell-25" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(doc[:<span class="dv">6</span>])</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'-----'</span>)</span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'</span><span class="sc">{</span>doc[<span class="dv">3</span>]<span class="sc">}</span><span class="ss">, i.e. i = 3'</span>)</span>
@@ -476,7 +505,7 @@ Perseo, i.e. i + 2 = 5</code></pre>
 <section id="customization-of-the-spacy-tokenizer-in-latincy" class="level3" data-number="4.1.2">
 <h3 data-number="4.1.2" class="anchored" data-anchor-id="customization-of-the-spacy-tokenizer-in-latincy"><span class="header-section-number">4.1.2</span> Customization of the spaCy tokenizer in LatinCy</h3>
 <p>LatinCy aims to tokenize the <em>que</em> enclitic in Latin texts. As noted above this is currently done through a rule-based approach. Here is the custom tokenizer code (beginning at this line in the <a href="https://github.com/diyclassics/la_core_web_lg/blob/89a5fda0b691afb613f77247771cdb407f1be1ec/scripts/functions.py#L191">code</a>) followed by a description of the process. Note that this process is based on the following recommendations in the spaCy documentation: https://spacy.io/usage/training#custom-tokenizer.</p>
-<div class="cell" data-execution_count="14">
+<div id="cell-28" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> spacy.util <span class="im">import</span> registry, compile_suffix_regex</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="at">@registry.callbacks</span>(<span class="st">"customize_tokenizer"</span>)</span>
@@ -498,11 +527,11 @@ Perseo, i.e. i + 2 = 5</code></pre>
 <span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> customize_tokenizer</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Basically, we treat <em>que</em> (and its case and u/v norm variants) as punctuation. These are added to the <code>Defaults.suffixes</code>. If no other intervention were made, then any word ending in <em>que</em> or a variant would be split into a before-<em>que</em> part and <em>que</em>. Since there are large number of relatively predictable words that end in <em>que</em>, these are maintained in a list called <code>que_exceptions</code>. All of the words in the <code>que_exceptions</code> list are added as a “special case” using the tokenizer’s <code>add_special_case</code> method and so will not be split. The <code>que_exceptions</code> lists is as follows:</p>
-<div class="cell" data-execution_count="15">
+<div id="cell-30" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>que_exceptions <span class="op">=</span> [<span class="st">'quisque'</span>, <span class="st">'quidque'</span>, <span class="st">'quicque'</span>, <span class="st">'quodque'</span>, <span class="st">'cuiusque'</span>, <span class="st">'cuique'</span>, <span class="st">'quemque'</span>, <span class="st">'quamque'</span>, <span class="st">'quoque'</span>, <span class="st">'quaque'</span>, <span class="st">'quique'</span>, <span class="st">'quaeque'</span>, <span class="st">'quorumque'</span>, <span class="st">'quarumque'</span>, <span class="st">'quibusque'</span>, <span class="st">'quosque'</span>, <span class="st">'quasque'</span>, <span class="st">'uterque'</span>, <span class="st">'utraque'</span>, <span class="st">'utrumque'</span>, <span class="st">'utriusque'</span>, <span class="st">'utrique'</span>, <span class="st">'utrumque'</span>, <span class="st">'utramque'</span>, <span class="st">'utroque'</span>, <span class="st">'utraque'</span>, <span class="st">'utrique'</span>, <span class="st">'utraeque'</span>, <span class="st">'utrorumque'</span>, <span class="st">'utrarumque'</span>, <span class="st">'utrisque'</span>, <span class="st">'utrosque'</span>, <span class="st">'utrasque'</span>, <span class="st">'quicumque'</span>, <span class="st">'quidcumque'</span>, <span class="st">'quodcumque'</span>, <span class="st">'cuiuscumque'</span>, <span class="st">'cuicumque'</span>, <span class="st">'quemcumque'</span>, <span class="st">'quamcumque'</span>, <span class="st">'quocumque'</span>, <span class="st">'quacumque'</span>, <span class="st">'quicumque'</span>, <span class="st">'quaecumque'</span>, <span class="st">'quorumcumque'</span>, <span class="st">'quarumcumque'</span>, <span class="st">'quibuscumque'</span>, <span class="st">'quoscumque'</span>, <span class="st">'quascumque'</span>, <span class="st">'unusquisque'</span>, <span class="st">'unaquaeque'</span>, <span class="st">'unumquodque'</span>, <span class="st">'unumquidque'</span>, <span class="st">'uniuscuiusque'</span>, <span class="st">'unicuique'</span>, <span class="st">'unumquemque'</span>, <span class="st">'unamquamque'</span>, <span class="st">'unoquoque'</span>, <span class="st">'unaquaque'</span>, <span class="st">'plerusque'</span>, <span class="st">'pleraque'</span>, <span class="st">'plerumque'</span>, <span class="st">'plerique'</span>, <span class="st">'pleraeque'</span>, <span class="st">'pleroque'</span>, <span class="st">'pleramque'</span>, <span class="st">'plerorumque'</span>, <span class="st">'plerarumque'</span>, <span class="st">'plerisque'</span>, <span class="st">'plerosque'</span>, <span class="st">'plerasque'</span>, <span class="st">'absque'</span>, <span class="st">'abusque'</span>, <span class="st">'adaeque'</span>, <span class="st">'adusque'</span>, <span class="st">'aeque'</span>, <span class="st">'antique'</span>, <span class="st">'atque'</span>, <span class="st">'circumundique'</span>, <span class="st">'conseque'</span>, <span class="st">'cumque'</span>, <span class="st">'cunque'</span>, <span class="st">'denique'</span>, <span class="st">'deque'</span>, <span class="st">'donique'</span>, <span class="st">'hucusque'</span>, <span class="st">'inique'</span>, <span class="st">'inseque'</span>, <span class="st">'itaque'</span>, <span class="st">'longinque'</span>, <span class="st">'namque'</span>, <span class="st">'neque'</span>, <span class="st">'oblique'</span>, <span class="st">'peraeque'</span>, <span class="st">'praecoque'</span>, <span class="st">'propinque'</span>, <span class="st">'qualiscumque'</span>, <span class="st">'quandocumque'</span>, <span class="st">'quandoque'</span>, <span class="st">'quantuluscumque'</span>, <span class="st">'quantumcumque'</span>, <span class="st">'quantuscumque'</span>, <span class="st">'quinque'</span>, <span class="st">'quocumque'</span>, <span class="st">'quomodocumque'</span>, <span class="st">'quomque'</span>, <span class="st">'quotacumque'</span>, <span class="st">'quotcumque'</span>, <span class="st">'quotienscumque'</span>, <span class="st">'quotiensque'</span>, <span class="st">'quotusquisque'</span>, <span class="st">'quousque'</span>, <span class="st">'relinque'</span>, <span class="st">'simulatque'</span>, <span class="st">'torque'</span>, <span class="st">'ubicumque'</span>, <span class="st">'ubique'</span>, <span class="st">'undecumque'</span>, <span class="st">'undique'</span>, <span class="st">'usque'</span>, <span class="st">'usquequaque'</span>, <span class="st">'utcumque'</span>, <span class="st">'utercumque'</span>, <span class="st">'utique'</span>, <span class="st">'utrimque'</span>, <span class="st">'utrique'</span>, <span class="st">'utriusque'</span>, <span class="st">'utrobique'</span>, <span class="st">'utrubique'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>You can see these words in the <code>rules</code> attribute of the tokenizer.</p>
-<div class="cell" data-execution_count="16">
+<div id="cell-32" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sample of 10 que rules from the custom tokenizer</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>tokenizer_rules <span class="op">=</span> nlp.tokenizer.rules</span>
@@ -513,7 +542,7 @@ Perseo, i.e. i + 2 = 5</code></pre>
 </div>
 <p>With the exception of basic enclitic splitting, the LatinCy tokenizer is the same as the default spaCy tokenizer. The default spaCy tokenizer is described in detail in the <a href="https://spacy.io/api/tokenizer">spaCy documentation</a>. Here are some useful attributes/methods for working with LatinCy.</p>
 <p>Tokenize a string without any other pipeline annotations with a call.</p>
-<div class="cell" data-execution_count="17">
+<div id="cell-35" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>tokens <span class="op">=</span> nlp.tokenizer(text)</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tokens)</span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tokens[<span class="dv">0</span>].text)</span>
@@ -525,7 +554,7 @@ Haec
 </div>
 </div>
 <p>A list of texts can be tokenized in one pass with the <code>pipe</code> method. This yields a generator object where each item is <code>Doc</code> object of tokenized-only texts</p>
-<div class="cell" data-execution_count="18">
+<div id="cell-37" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>texts <span class="op">=</span> [<span class="st">"Haec narrantur a poetis de Perseo. Perseus filius erat Iovis, maximi deorum; avus eius Acrisius appellabatur. Acrisius volebat Perseum nepotem suum necare; nam propter oraculum puerum timebat. Comprehendit igitur Perseum adhuc infantem, et cum matre in arca lignea inclusit. Tum arcam ipsam in mare coniecit. Danae, Persei mater, magnopere territa est; tempestas enim magna mare turbabat. Perseus autem in sinu matris dormiebat."</span>, <span class="st">"Iuppiter tamen haec omnia vidit, et filium suum servare constituit. Tranquillum igitur fecit mare, et arcam ad insulam Seriphum perduxit. Huius insulae Polydectes tum rex erat. Postquam arca ad litus appulsa est, Danae in harena quietem capiebat. Post breve tempus a piscatore quodam reperta est, et ad domum regis Polydectis adducta est. Ille matrem et puerum benigne excepit, et iis sedem tutam in finibus suis dedit. Danae hoc donum libenter accepit, et pro tanto beneficio regi gratias egit."</span>, <span class="st">"Perseus igitur multos annos ibi habitabat, et cum matre sua vitam beatam agebat. At Polydectes Danaen magnopere amabat, atque eam in matrimonium ducere volebat. Hoc tamen consilium Perseo minime gratum erat. Polydectes igitur Perseum dimittere constituit. Tum iuvenem ad se vocavit et haec dixit: </span><span class="ch">\"</span><span class="st">Turpe est hanc ignavam vitam agere; iam dudum tu adulescens es. Quo usque hic manebis? Tempus est arma capere et virtutem praestare. Hinc abi, et caput Medusae mihi refer.</span><span class="ch">\"</span><span class="st">"</span>]</span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>tokens <span class="op">=</span> <span class="bu">list</span>(nlp.tokenizer.pipe(texts))</span>
@@ -538,14 +567,14 @@ Haec
 </div>
 </div>
 <p>You can get an explanation of the tokenization “decisions” using the <code>explain</code> method. In the example below, we see how the <em>que</em> in <em>virumque</em> is treated as a suffix (as discussed above) and so is split during tokenization.</p>
-<div class="cell" data-execution_count="19">
+<div id="cell-39" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>tok_exp <span class="op">=</span> nlp.tokenizer.explain(<span class="st">'arma virumque cano'</span>)</span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tok_exp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[('TOKEN', 'arma'), ('TOKEN', 'virum'), ('SUFFIX', 'que'), ('TOKEN', 'cano')]</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="20">
+<div id="cell-40" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>tokens <span class="op">=</span> nlp.tokenizer(<span class="st">'arma uirumque cano'</span>)</span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, token <span class="kw">in</span> <span class="bu">enumerate</span>(tokens):</span>
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>token<span class="sc">.</span>text<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -601,18 +630,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -644,11 +662,50 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -658,8 +715,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -671,7 +737,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -715,6 +904,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -740,6 +930,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -801,17 +1017,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./sentence-segmentation.html" class="pagination-link">
+      <a href="./sentence-segmentation.html" class="pagination-link" aria-label="Sentence segmentation">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Sentence segmentation</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./projects.html" class="pagination-link">
-        <span class="nav-page-text">Open LatinCy Projects</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./lemmatization.html" class="pagination-link" aria-label="Lemmatization">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Lemmatization</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
+
 
 
 

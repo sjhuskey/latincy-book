@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>1&nbsp; Installing LatinCy models – Getting Started with LatinCy</title>
+<title>6&nbsp; POS Tagging – Getting Started with LatinCy</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -54,7 +54,27 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -64,8 +84,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./3_load.html" rel="next">
-<link href="./abbreviations.html" rel="prev">
+<link href="./projects.html" rel="next">
+<link href="./lemmatization.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -115,7 +135,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./2_install.html">Model/Pipeline Basics</a></li><li class="breadcrumb-item"><a href="./2_install.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Installing LatinCy models</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./sentence-segmentation.html">NLP Tasks</a></li><li class="breadcrumb-item"><a href="./pos-tagging.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">POS Tagging</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -167,7 +187,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./2_install.html" class="sidebar-item-text sidebar-link active">
+  <a href="./2_install.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Installing LatinCy models</span></span></a>
   </div>
 </li>
@@ -208,7 +228,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./pos-tagging.html" class="sidebar-item-text sidebar-link">
+  <a href="./pos-tagging.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">POS Tagging</span></span></a>
   </div>
 </li>
@@ -251,18 +271,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#installing-spacy" id="toc-installing-spacy" class="nav-link active" data-scroll-target="#installing-spacy"><span class="header-section-number">1.1</span> Installing spaCy</a></li>
-  <li><a href="#installing-the-latincy-models" id="toc-installing-the-latincy-models" class="nav-link" data-scroll-target="#installing-the-latincy-models"><span class="header-section-number">1.2</span> Installing the LatinCy models</a></li>
-  <li><a href="#installing-additional-packages" id="toc-installing-additional-packages" class="nav-link" data-scroll-target="#installing-additional-packages"><span class="header-section-number">1.3</span> Installing additional packages</a></li>
+  <li><a href="#pos-tagging-with-latincy" id="toc-pos-tagging-with-latincy" class="nav-link active" data-scroll-target="#pos-tagging-with-latincy"><span class="header-section-number">6.1</span> POS Tagging with LatinCy</a>
+  <ul class="collapse">
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./2_install.html">Model/Pipeline Basics</a></li><li class="breadcrumb-item"><a href="./2_install.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Installing LatinCy models</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./sentence-segmentation.html">NLP Tasks</a></li><li class="breadcrumb-item"><a href="./pos-tagging.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">POS Tagging</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Installing LatinCy models</span></h1>
+<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">POS Tagging</span></h1>
 </div>
 
 
@@ -279,36 +300,217 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="installing-spacy" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="installing-spacy"><span class="header-section-number">1.1</span> Installing spaCy</h2>
-<p>The LatinCy models are designed to work with the spaCy natural language platform, so you will need to have this package installed before anything else. The following cell has the pip install command for spaCy. At the time of writing, the latest version available for spaCy compatible with LatinCy is v3.7.5.</p>
-<p>NB: To run the cells below, uncomment the commands by removing the # at the beginning of the line. The exclamation point at the beginning of the line is shorthand for the <a href="https://ipython.readthedocs.io/en/stable/interactive/magics.html#magic-system"><code>%system</code> magic command</a> in Jupyter which can be used to run shell commands from within a notebook.</p>
+<section id="pos-tagging-with-latincy" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="pos-tagging-with-latincy"><span class="header-section-number">6.1</span> POS Tagging with LatinCy</h2>
+<p>Part-of-speech tagging is the task of mapping a token in a text to its part of speech, whether ‘noun’ or ‘verb’ or ‘prepositon’ and so on. There are two components in the default LatinCy pipelines that provide such annotations, that is the <code>tagger</code> and the <code>morphologizer</code>. Ostensibly, the <code>tagger</code> provides language-specific, fine-grain POS tags and the <code>morphologizer</code> provides coarse-grain tags (as defined by the UD <a href="https://universaldependencies.org/u/pos/">Universal POS tags</a>); at present, the LatinCy models have a high degree of overlap between these two tagsets and there are effectively <em>no</em> fine-grain tags.</p>
 <div id="cell-3" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># !pip install -U spacy</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Imports &amp; setup</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> spacy</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pprint <span class="im">import</span> pprint</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>nlp <span class="op">=</span> spacy.load(<span class="st">'la_core_web_lg'</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>text <span class="op">=</span> <span class="st">"Haec narrantur a poetis de Perseo. Perseus filius erat Iovis, maximi deorum. Avus eius Acrisius appellabatur."</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>doc <span class="op">=</span> nlp(text)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(doc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Haec narrantur a poetis de Perseo. Perseus filius erat Iovis, maximi deorum. Avus eius Acrisius appellabatur.</code></pre>
 </div>
-</section>
-<section id="installing-the-latincy-models" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="installing-the-latincy-models"><span class="header-section-number">1.2</span> Installing the LatinCy models</h2>
-<p>LatinCy models are currently available in three sizes: ‘sm’, ‘md’, and ‘lg’. We will use the different models throughout the tutorials, so let’s install all three now so that they are available for future chapters.</p>
-<div id="cell-6" class="cell" data-vscode="{&quot;languageId&quot;:&quot;shellscript&quot;}" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ! pip install "la-core-web-sm @ https://huggingface.co/latincy/la_core_web_sm/resolve/main/la_core_web_sm-any-py3-none-any.whl"</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># ! pip install "la-core-web-md @ https://huggingface.co/latincy/la_core_web_md/resolve/main/la_core_web_md-any-py3-none-any.whl"</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ! pip install "la-core-web-lg @ https://huggingface.co/latincy/la_core_web_lg/resolve/main/la_core_web_lg-any-py3-none-any.whl"</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># ! pip install "la-core-web-trf @ https://huggingface.co/latincy/la_core_web_trf/resolve/main/la_core_web_trf-any-py3-none-any.whl"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-<section id="installing-additional-packages" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="installing-additional-packages"><span class="header-section-number">1.3</span> Installing additional packages</h2>
-<p>We will also use other packages throughout these tutorials. They are included here for your convenience, as well as in the <code>requirements.txt</code> file in the code repository for this Quarto book.</p>
-<div id="cell-9" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># !pip install pandas</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># !pip install matplotlib</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># !pip install seaborn</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># !pip install scikit-learn</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># !pip install tqdm</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Note here the two “tagging” components that are included in the pipeline, i.e.&nbsp;“tagger” and “morphologizer”…</p>
+<div id="cell-5" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(nlp.pipe_names)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>['senter', 'normer', 'tok2vec', 'tagger', 'morphologizer', 'trainable_lemmatizer', 'parser', 'lookup_lemmatizer', 'ner']</code></pre>
 </div>
+</div>
+<p>Once a text is annotated using the LatinCy pipeline, i.e.&nbsp;as part of the <code>Doc</code> creation process, tags can be found as annotations of the <code>Token</code> objects. The coarse-grain tags are stored in the <code>pos_</code> attribute; fine-grain tags are stored in the <code>tag_</code> attribute.</p>
+<div id="cell-7" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>sample_token <span class="op">=</span> doc[<span class="dv">1</span>]</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Sample token: </span><span class="sc">{</span>sample_token<span class="sc">.</span>text<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Sample POS: </span><span class="sc">{</span>sample_token<span class="sc">.</span>pos_<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Sample TAG: </span><span class="sc">{</span>sample_token<span class="sc">.</span>tag_<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Sample token: narrantur
+Sample POS: VERB
+Sample TAG: verb</code></pre>
+</div>
+</div>
+<p>Note the high degree of overlap between the coarse-grain and fine-grain tags in the LatinCy models in the chart below. That said, it is perhaps worth paying more attention to where the tagsets do not overlap. In the LatinCy training, conventions for classes of words to be labeled, say, “DET” (as in the <em>Haec</em> <code>pos_</code>) or “AUX” (as in <em>est</em>) are inferred from usage in the six different treebanks used. A sense of the inconsistency in the tagsets can be gleaned from the following page: (https://universaldependencies.org/la/); note also the important work of <span class="citation" data-cites="gamba_universalising_2023">Gamba and Zeman (<a href="references.html#ref-gamba_universalising_2023" role="doc-biblioref">2023</a>)</span> in this area.</p>
+<div id="cell-9" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tabulate</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> []</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>tokens <span class="op">=</span> [item <span class="cf">for</span> item <span class="kw">in</span> doc]</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> token <span class="kw">in</span> tokens:</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    data.append([token.text, token.pos_, token.tag_])    </span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tabulate.tabulate(data, headers<span class="op">=</span>[<span class="st">'Text'</span>, <span class="st">"POS"</span>, <span class="st">"TAG"</span>]))  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Text          POS    TAG
+------------  -----  -----------
+Haec          DET    pronoun
+narrantur     VERB   verb
+a             ADP    preposition
+poetis        NOUN   noun
+de            ADP    preposition
+Perseo        PROPN  proper_noun
+.             PUNCT  punc
+Perseus       PROPN  proper_noun
+filius        NOUN   noun
+erat          AUX    verb
+Iovis         PROPN  proper_noun
+,             PUNCT  punc
+maximi        ADJ    adjective
+deorum        NOUN   noun
+.             PUNCT  punc
+Avus          NOUN   noun
+eius          PRON   pronoun
+Acrisius      PROPN  proper_noun
+appellabatur  VERB   verb
+.             PUNCT  punc</code></pre>
+</div>
+</div>
+<p>As with the lemma annotations, the <code>pos_</code> and <code>tag_</code> attributes are only the human-readable of the lemma. Internally, spaCy uses a hash value to represent this, again noting the lack of trailing underscore…</p>
+<div id="cell-11" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Token: </span><span class="sc">{</span>tokens[<span class="dv">1</span>]<span class="sc">.</span>text<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Human-readable TAG: </span><span class="sc">{</span>tokens[<span class="dv">1</span>]<span class="sc">.</span>tag_<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'spaCy TAG key: </span><span class="sc">{</span>tokens[<span class="dv">1</span>]<span class="sc">.</span>tag<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Token: narrantur
+Human-readable TAG: verb
+spaCy TAG key: 6360137228241296794</code></pre>
+</div>
+</div>
+<p>This tag ‘key’ can be looked up in spaCy’s <code>NLP.vocab.strings</code> atrribute…</p>
+<div id="cell-13" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> nlp.get_pipe(<span class="st">'tagger'</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>tag_lookup <span class="op">=</span> T.vocab.strings[<span class="dv">6360137228241296794</span>] <span class="co"># also would work on `nlp`, i.e. nlp.vocab.strings[6360137228241296794]</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'TAG key: </span><span class="sc">{</span>tokens[<span class="dv">1</span>]<span class="sc">.</span>tag<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Human-readable TAG: </span><span class="sc">{</span>tag_lookup<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>TAG key: 6360137228241296794
+Human-readable TAG: verb</code></pre>
+</div>
+</div>
+<p>The same process applies to the POS ‘keys’…</p>
+<div id="cell-15" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Token: </span><span class="sc">{</span>tokens[<span class="dv">1</span>]<span class="sc">.</span>text<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Human-readable POS: </span><span class="sc">{</span>tokens[<span class="dv">1</span>]<span class="sc">.</span>pos_<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'spaCy POS key: </span><span class="sc">{</span>tokens[<span class="dv">1</span>]<span class="sc">.</span>pos<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Token: narrantur
+Human-readable POS: VERB
+spaCy POS key: 100</code></pre>
+</div>
+</div>
+<div id="cell-16" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>M <span class="op">=</span> nlp.get_pipe(<span class="st">"morphologizer"</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>pos_lookup <span class="op">=</span> M.vocab.strings[<span class="dv">100</span>]</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'POS key: </span><span class="sc">{</span>tokens[<span class="dv">1</span>]<span class="sc">.</span>pos<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Human-readable POS: </span><span class="sc">{</span>pos_lookup<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>POS key: 100
+Human-readable POS: VERB</code></pre>
+</div>
+</div>
+<p>We can use the <code>label_data</code> attribute from the <code>morphologizer</code> component to derive the complete (coarse-grain) tagset…</p>
+<div id="cell-18" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> split_pos(morph):</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="st">'POS='</span> <span class="kw">in</span> morph:</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> morph.split(<span class="st">'POS='</span>)[<span class="dv">1</span>].split(<span class="st">'|'</span>)[<span class="dv">0</span>]</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">None</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>tagset <span class="op">=</span> <span class="bu">sorted</span>(<span class="bu">list</span>(<span class="bu">set</span>([split_pos(k) <span class="cf">for</span> k, v <span class="kw">in</span> M.label_data[<span class="st">'morph'</span>].items() <span class="cf">if</span> split_pos(k)])))</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tagset)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>['ADJ', 'ADP', 'ADV', 'AUX', 'CCONJ', 'DET', 'INTJ', 'NOUN', 'NUM', 'PART', 'PRON', 'PROPN', 'PUNCT', 'SCONJ', 'VERB', 'X']</code></pre>
+</div>
+</div>
+<p>SpaCy has an <code>explain</code> methods that can show human-readable descriptions of these standard tags…</p>
+<div id="cell-20" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> []</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> tag <span class="kw">in</span> tagset:</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    data.append([tag, spacy.explain(tag)])</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tabulate.tabulate(data, headers<span class="op">=</span>[<span class="st">'TAG'</span>, <span class="st">'Description'</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>TAG    Description
+-----  -------------------------
+ADJ    adjective
+ADP    adposition
+ADV    adverb
+AUX    auxiliary
+CCONJ  coordinating conjunction
+DET    determiner
+INTJ   interjection
+NOUN   noun
+NUM    numeral
+PART   particle
+PRON   pronoun
+PROPN  proper noun
+PUNCT  punctuation
+SCONJ  subordinating conjunction
+VERB   verb
+X      other</code></pre>
+</div>
+</div>
+<p>It may also be useful to know the “confidence” of the tagger in making its decision. We can derive this from the output tagger’s <code>model.predict</code> method. This returns (at least, in part) a ranked list of per-scores, the maximum value of which determines the final annotation.</p>
+<div id="cell-22" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Helper function to get tagging scores</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_tagging_scores(doc, n<span class="op">=</span><span class="dv">3</span>):</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># cf. https://stackoverflow.com/a/69228515</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    scores <span class="op">=</span> []</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>    tagger <span class="op">=</span> nlp.get_pipe(<span class="st">'tagger'</span>)</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    labels <span class="op">=</span> tagger.labels</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> token <span class="kw">in</span> doc:</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>        token_scores <span class="op">=</span> tagger.model.predict([doc])[<span class="dv">0</span>][token.i]</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>        r <span class="op">=</span> [<span class="op">*</span><span class="bu">enumerate</span>(token_scores)]</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>        r.sort(key<span class="op">=</span><span class="kw">lambda</span> x: x[<span class="dv">1</span>], reverse<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>        scores.append([(labels[i], p) <span class="cf">for</span> i, p <span class="kw">in</span> r[:n]])</span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> scores</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-23" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the top 3 tags by score for each token in the Doc</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>tagging_probs <span class="op">=</span> get_tagging_scores(doc)</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> token <span class="kw">in</span> doc:</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'Token: </span><span class="sc">{</span>token<span class="sc">.</span>text<span class="sc">}</span><span class="ss">'</span>, end<span class="op">=</span><span class="st">'</span><span class="ch">\n\n</span><span class="st">'</span>)</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> []</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> label, prob <span class="kw">in</span> tagging_probs[token.i]:</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>        data.append([label, prob])</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(tabulate.tabulate(data, headers<span class="op">=</span>[<span class="st">'Label'</span>, <span class="st">'Score'</span>]))</span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">break</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Token: Haec
+
+Label         Score
+---------  --------
+pronoun    10.7023
+adjective   8.26614
+noun        3.13534</code></pre>
+</div>
+</div>
+<section id="references" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="references">References</h3>
+<p><strong>NLTK</strong> Chapter 5 “Categorizing and tagging words” <a href="https://www.nltk.org/book/ch05.html">link</a><br>
+<strong>SLP</strong> Chapter 8 “Sequence labeling for parts of speech and named entities” <a href="https://web.stanford.edu/~jurafsky/slp3/8.pdf">link</a><br>
+<strong>spaCy</strong> <a href="https://spacy.io/api/tagger">Tagger</a> and <a href="https://spacy.io/api/morphologizer">Morphologizer</a></p>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-gamba_universalising_2023" class="csl-entry" role="listitem">
+Gamba, Federica, and Daniel Zeman. 2023. <span>“Universalising <span>Latin</span> <span>Universal</span> <span>Dependencies</span>: <span>A</span> <span>Harmonisation</span> of <span>Latin</span> <span>Treebanks</span> in <span>UD</span>.”</span> In <em>Proceedings of the <span>Sixth</span> <span>Workshop</span> on <span>Universal</span> <span>Dependencies</span> (<span>UDW</span>, <span>GURT</span>/<span>SyntaxFest</span> 2023)</em>, edited by Loïc Grobol and Francis Tyers, 7–16. Washington, D.C.: Association for Computational Linguistics. <a href="https://aclanthology.org/2023.udw-1.2">https://aclanthology.org/2023.udw-1.2</a>.
+</div>
+</div>
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -734,13 +936,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./abbreviations.html" class="pagination-link" aria-label="Abbreviations">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Abbreviations</span>
+      <a href="./lemmatization.html" class="pagination-link" aria-label="Lemmatization">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Lemmatization</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./3_load.html" class="pagination-link" aria-label="Loading LatinCy models">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Loading LatinCy models</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./projects.html" class="pagination-link" aria-label="Open LatinCy Projects">
+        <span class="nav-page-text">Open LatinCy Projects</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
